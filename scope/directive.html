@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.angularjs.org/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="ngApp">
+   <div ng-controller="mainController" >
+    <h1>List staff:</h1>
+    <ul 
+    ng-init="staffs = [
+    {name: 'name 1', position: 'boss'},
+    {name: 'name 2', position: 'staff'}
+    ]">
+        <li ng-repeat="staff in staffs" >{{$index + 1}}. Name: {{staff.name}}, Position: {{staff.position | uppercase}}</li>
+    </ul>
+
+    <h1 ng-if="load">Loading...</h1>
+    <h1 ng-show="load">Loading...</h1>
+    <h1 ng-hide="load">Loaded</h1>
+   </div>
+    
+    <script>
+        var app = angular.module("ngApp", []);
+
+        app.controller("mainController", function($scope, $timeout){
+            $scope.parentMsg = "This is parent message";
+            $scope.load = true;
+
+            $timeout(function() {
+                $scope.load = false;
+            }, 3000);
+
+        })
+    </script>
+</body>
+</html>

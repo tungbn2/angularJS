@@ -5,8 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.angularjs.org/1.8.2/angular.min.js"></script>
+
+    <script>
+        var myApp = angular.module("myApp", []);
+
+        myApp.controller("firstController", function($scope){
+            $scope.title = "First Controller Title";
+        });
+
+        myApp.controller("secondController", function($scope){
+            $scope.title = "Second Controller Title";
+        });
+    </script>
 </head>
-<body>
-    
+<body ng-app="myApp">
+    <div ng-controller="firstController">
+        <p>{{title}}</p>
+    </div>
+
+    <div ng-controller="secondController">
+        <p>{{title}}</p>
+    </div>
 </body>
 </html>

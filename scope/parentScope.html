@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.angularjs.org/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="ngApp">
+    <h1>Root: {{rootMsg}}</h1>
+    <ul ng-controller="parentController">
+        <li>Parent: {{parentMsg}}</li>
+        <hr>
+        <ul ng-controller="childController">
+            <li>Child: {{childMsg}}</li>
+            <li>Root: {{rootMsg}}</li>
+            <li>Parent by $parent: {{$parent.parentMsg}}</li>
+        </ul>
+    </ul>
+    
+    <script>
+        var app = angular.module("ngApp", []);
+
+        app.controller("parentController", function($scope, $rootScope){
+            $rootScope.rootMsg = "This is root message";
+            $scope.parentMsg = "This is parent message";
+        })
+        
+        app.controller("childController", function($scope){
+            $scope.childMsg = "This is child message";
+        })
+    </script>
+</body>
+</html>
